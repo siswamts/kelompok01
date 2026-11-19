@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff9eb" />
+  <title>Josjis Hihu — Menu Camilan</title>
+  <style>
+    :root{
+      --cream:#fff9eb; --cream2:#fffdf5; --green:#557d25; --green-dark:#29491e;
+      --green-soft:#eaf0cf; --yellow:#f6d66d; --orange:#e9a32d; --line:#e8dfc5;
+      --text:#304326; --muted:#78806a; --shadow:0 12px 30px rgba(69,82,36,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;background:var(--cream);color:var(--text);font-family:Inter,ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    header{height:72px;display:flex;align-items:center;background:rgba(255,253,245,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-weight:950;font-size:22px;letter-spacing:-1px;text-decoration:none;color:var(--green)}
+    .logo span{color:var(--orange)}
+    nav{display:flex;align-items:center;gap:28px;font-size:13px;font-weight:750}
+    nav a{text-decoration:none;transition:.2s}nav a:hover{color:var(--orange)}
+    .cart-nav{border:0;border-radius:30px;background:var(--yellow);padding:10px 16px;color:var(--text);font-weight:850;cursor:pointer}
+    .hero{min-height:490px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;position:relative;overflow:hidden;padding:45px 0 55px}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;z-index:-1}
+    .hero:before{width:340px;height:340px;background:#fff0b7;right:2%;top:-120px}
+    .hero:after{width:260px;height:260px;background:#edf1d6;left:-155px;bottom:-120px}
+    .eyebrow{font-size:11px;letter-spacing:2px;font-weight:900;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+    .eyebrow:before{content:"";width:22px;height:2px;background:var(--yellow)}
+    h1{font-size:clamp(58px,8vw,94px);line-height:.91;letter-spacing:-6px;margin:22px 0 20px;font-weight:1000;color:var(--green)}
+    h1 span{display:block;color:var(--orange)}
+    .hero-copy{max-width:440px;color:#68705c;line-height:1.8;font-size:15px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border:0;border-radius:30px;padding:13px 22px;font-size:13px;font-weight:850;cursor:pointer;transition:transform .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--green);color:white}.btn-light{background:var(--cream2);border:1px solid var(--line);color:var(--text)}
+    .hero-art{display:grid;place-items:center;min-height:360px;position:relative}
+    .sun-disc{width:min(350px,78vw);aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,#f9df83,#f4c94f);display:grid;place-items:center;box-shadow:0 20px 55px #b99b4b30;position:relative}
+    .sun-disc:before{content:"";position:absolute;inset:24px;border:2px solid #fff8d9;border-radius:50%}
+    .snack-photo{width:68%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f9d9a0 0 8%,transparent 9%),linear-gradient(145deg,#6b3826,#2d2119 52%,#9a5a2c);border:9px solid #fff8e7;box-shadow:0 12px 30px #513a1d40;display:grid;place-items:center;overflow:hidden}
+    .snack-photo span{font-size:clamp(85px,12vw,145px);filter:drop-shadow(0 8px 5px #24180b55);transform:rotate(-13deg)}
+    .float-tag{position:absolute;background:#fffdf5;border:1px solid var(--line);padding:10px 15px;border-radius:14px;font-size:12px;font-weight:850;box-shadow:var(--shadow)}
+    .tag-one{right:2%;top:15%;transform:rotate(7deg)}.tag-two{left:0;bottom:17%;transform:rotate(-7deg);color:#a66d1e}
+    .spark{position:absolute;color:var(--orange);font-size:25px}.spark.s1{left:0;top:35px}.spark.s2{right:0;bottom:25px}
+    .ticker{background:var(--green-dark);color:#fff9df;padding:14px 0;font-size:12px;font-weight:750}
+    .ticker .wrap{display:flex;justify-content:center;gap:34px;flex-wrap:wrap}
+    section{padding:78px 0}
+    .section-head{text-align:center;margin:0 auto 34px}.section-head .eyebrow{justify-content:center}.section-head .eyebrow:before{display:none}
+    h2{font-size:clamp(34px,5vw,48px);letter-spacing:-2px;margin:10px 0;color:var(--green-dark);font-weight:950}
+    .section-head p{color:var(--muted);font-size:14px;margin:0}
+    #menu-cart{background:var(--cream)}
+    .shop-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(290px,.8fr);gap:24px;align-items:start}
+    .product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .product{background:var(--cream2);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 5px 0 #eee6cf;transition:.2s}
+    .product:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .product-visual{height:175px;display:grid;place-items:center;position:relative;background:#f7dda0}
+    .product:nth-child(2) .product-visual{background:#e5eabe}.product:nth-child(3) .product-visual{background:#f8d59b}.product:nth-child(4) .product-visual{background:#e9e5bd}
+    .product-visual:before{content:"";position:absolute;width:118px;height:118px;border:1.5px dashed #fff9e4;border-radius:50%}
+    .product-visual .emoji{font-size:76px;filter:drop-shadow(0 9px 5px #57421b30);z-index:1}
+    .price-pill{position:absolute;left:13px;top:13px;background:var(--yellow);padding:6px 10px;border-radius:20px;font-size:11px;font-weight:900;color:#51451d}
+    .product-info{padding:17px 16px 16px}.product h3{margin:0 0 7px;font-size:18px;color:var(--green-dark)}
+    .small-label{font-size:9px;letter-spacing:1.4px;font-weight:900;color:var(--green);margin-bottom:5px}
+    .product p{font-size:11px;line-height:1.6;color:#7b806e;min-height:36px;margin:0 0 14px}
+    .product-controls{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:11px;background:white;overflow:hidden}
+    .qty button{border:0;background:transparent;width:30px;height:31px;cursor:pointer;color:var(--green-dark);font-weight:900}
+    .qty span{min-width:20px;text-align:center;font-size:12px;font-weight:800}
+    .add-btn{background:var(--green);color:white;border:0;border-radius:10px;padding:9px 12px;font-size:11px;font-weight:850;cursor:pointer;flex:1}
+    .cart-panel{background:var(--cream2);border:1px solid var(--line);border-radius:22px;padding:23px;position:sticky;top:92px;box-shadow:var(--shadow)}
+    .cart-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.cart-title h3{font-size:23px;margin:0;color:var(--green-dark)}
+    .cart-count{background:var(--yellow);border-radius:20px;padding:5px 10px;font-size:11px;font-weight:900}
+    .cart-subtitle{font-size:11px;color:var(--muted);margin:8px 0 18px}
+    .cart-items{border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:12px 0;min-height:82px;max-height:300px;overflow:auto}
+    .empty{color:#8b8e7e;font-size:12px;line-height:1.7;padding:10px 0}
+    .cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;padding:9px 0;font-size:12px}.cart-item strong{display:block;color:var(--text);margin-bottom:3px}.cart-item small{color:var(--muted)}
+    .remove{border:0;background:transparent;color:#a66d1e;cursor:pointer;font-size:11px;text-decoration:underline}
+    .total-row{display:flex;justify-content:space-between;align-items:center;margin:17px 0 5px;font-size:15px}.total-row strong{font-size:22px;color:var(--green-dark)}
+    .cart-note{font-size:10px;color:var(--muted);line-height:1.6;margin:12px 0 16px}
+    .checkout{width:100%;background:var(--green);color:white}.clear-cart{width:100%;margin-top:9px;background:transparent;border:1px solid var(--line);color:#8a6a36;padding:10px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer}
+    #info{background:#eaf0d2}
+    .info-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:50px}
+    .info-copy h2{text-align:left;max-width:450px}.info-copy p{color:#667257;line-height:1.8;font-size:14px;max-width:430px}
+    .contact-card{background:var(--cream2);border:1px solid var(--line);border-radius:22px;padding:25px 28px;box-shadow:var(--shadow)}
+    .contact-row{display:flex;gap:13px;align-items:center;padding:13px 0;border-bottom:1px solid #eee7d4;font-size:13px;font-weight:750}.contact-row:last-child{border:0}.contact-icon{width:28px;color:var(--green);font-size:18px;text-align:center}.contact-row a{text-decoration:none}.contact-row a:hover{text-decoration:underline;color:var(--green)}
+    footer{background:var(--green-dark);color:#f7f1d8;padding:20px 0;font-size:11px}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:var(--green-dark);color:white;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:750;opacity:0;pointer-events:none;transition:.25s;z-index:50}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;text-align:center;padding-top:60px}.hero .eyebrow,.actions{justify-content:center}.hero-copy{margin:auto}.hero-art{min-height:300px}.shop-layout{grid-template-columns:1fr}.cart-panel{position:static;order:2}.info-layout{grid-template-columns:1fr;gap:25px}.info-copy{text-align:center}.info-copy .eyebrow{justify-content:center}.info-copy h2{text-align:center;margin-left:auto;margin-right:auto}.info-copy p{margin-left:auto;margin-right:auto}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}header{height:64px}.logo{font-size:19px}nav{gap:11px;font-size:10px}nav a:nth-child(2){display:none}.cart-nav{padding:9px 11px;font-size:11px}.hero{min-height:auto;padding:54px 0 35px}h1{letter-spacing:-4px}.hero-art{min-height:270px}.sun-disc{width:260px}.ticker .wrap{gap:10px;font-size:10px}section{padding:58px 0}.product-grid{gap:11px}.product-visual{height:130px}.product-visual .emoji{font-size:60px}.product-info{padding:13px 11px}.product h3{font-size:15px}.product p{font-size:10px;min-height:48px}.product-controls{flex-wrap:wrap}.qty{flex:1}.add-btn{min-width:100%}.contact-card{padding:17px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#home">Josjis <span>Hihu</span></a>
+      <nav aria-label="Navigasi utama">
+        <a href="#home">Beranda</a>
+        <a href="#menu-cart">Menu & Keranjang</a>
+        <a href="#info">Informasi Toko</a>
+        <button class="cart-nav" onclick="document.querySelector('#keranjang').scrollIntoView({behavior:'smooth'})">🛒 <span id="nav-count">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow">Menu camilan · Josjis.com</div>
+        <h1>Josjis <span>Hihu</span></h1>
+        <p class="hero-copy">Camilan enak untuk menemani harimu! Pilih menu favoritmu, masukkan ke keranjang, lalu pesan dengan mudah melalui WhatsApp.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#menu-cart">Pesan Sekarang <span>→</span></a>
+          <a class="btn btn-light" href="#info">Info Toko</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Ilustrasi camilan">
+        <span class="spark s1">✦</span><span class="spark s2">✦</span>
+        <div class="sun-disc"><div class="snack-photo"><span>🍫</span></div></div>
+        <div class="float-tag tag-one">🌿 Menu Camilan</div><div class="float-tag tag-two">✦ Josjis Hihu</div>
+      </div>
+    </section>
+
+    <div class="ticker"><div class="wrap"><span>▣ Di Gelar Tanggal 21-November-2026</span><span>⌖ LAPANGAN SEKOLAH MTS AL-MUNAWAR</span></div></div>
+
+    <section id="menu-cart">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Pilihan dari katalog</div><h2>Menu Camilan</h2><p>Pilih yang kamu suka dan tambahkan ke keranjang.</p></div>
+        <div class="shop-layout">
+          <div class="product-grid" id="products">
+            <article class="product" data-id="pisang" data-name="Pisang coklat" data-price="2000">
+              <div class="product-visual"><span class="price-pill">Rp2.000</span><span class="emoji">🍌</span></div>
+              <div class="product-info"><h3>Pisang coklat</h3><div class="small-label">KOMPOSISI</div><p>Pisang, coklat leleh, kacang mede.</p><div class="product-controls"><div class="qty"><button aria-label="Kurangi Pisang coklat" onclick="changeQty('pisang',-1)">−</button><span id="qty-pisang">1</span><button aria-label="Tambah Pisang coklat" onclick="changeQty('pisang',1)">+</button></div><button class="add-btn" onclick="addToCart('pisang')">+ Keranjang</button></div></div>
+            </article>
+            <article class="product" data-id="kupat" data-name="Kupat tahu" data-price="5000">
+              <div class="product-visual"><span class="price-pill">Rp5.000</span><span class="emoji">🥗</span></div>
+              <div class="product-info"><h3>Kupat tahu</h3><div class="small-label">KOMPOSISI</div><p>Kupat, tahu, toge, bumbu kacang, kecap, kerupuk.</p><div class="product-controls"><div class="qty"><button aria-label="Kurangi Kupat tahu" onclick="changeQty('kupat',-1)">−</button><span id="qty-kupat">1</span><button aria-label="Tambah Kupat tahu" onclick="changeQty('kupat',1)">+</button></div><button class="add-btn" onclick="addToCart('kupat')">+ Keranjang</button></div></div>
+            </article>
+            <article class="product" data-id="keripik" data-name="Keripik singkong" data-price="3000">
+              <div class="product-visual"><span class="price-pill">Rp3.000</span><span class="emoji">🍟</span></div>
+              <div class="product-info"><h3>Keripik singkong</h3><div class="small-label">KOMPOSISI</div><p>Singkong, minyak, bumbu Cinta Pedas, gurih.</p><div class="product-controls"><div class="qty"><button aria-label="Kurangi Keripik singkong" onclick="changeQty('keripik',-1)">−</button><span id="qty-keripik">1</span><button aria-label="Tambah Keripik singkong" onclick="changeQty('keripik',1)">+</button></div><button class="add-btn" onclick="addToCart('keripik')">+ Keranjang</button></div></div>
+            </article>
+            <article class="product" data-id="cipak" data-name="Cipak hihu" data-price="2000">
+              <div class="product-visual"><span class="price-pill">Rp2.000</span><span class="emoji">🍡</span></div>
+              <div class="product-info"><h3>Cipak hihu</h3><div class="small-label">KOMPOSISI</div><p>Tepung tapioka, tepung terigu, penyedap rasa, minyak, dan bumbu rahasia.</p><div class="product-controls"><div class="qty"><button aria-label="Kurangi Cipak hihu" onclick="changeQty('cipak',-1)">−</button><span id="qty-cipak">1</span><button aria-label="Tambah Cipak hihu" onclick="changeQty('cipak',1)">+</button></div><button class="add-btn" onclick="addToCart('cipak')">+ Keranjang</button></div></div>
+            </article>
+          </div>
+
+          <aside class="cart-panel" id="keranjang">
+            <div class="cart-title"><h3>Keranjangmu</h3><span class="cart-count" id="cart-count">0 item</span></div>
+            <p class="cart-subtitle">Ringkasan pilihan camilanmu.</p>
+            <div class="cart-items" id="cart-items"><div class="empty">Keranjang masih kosong. Pilih camilan dari katalog, yuk!</div></div>
+            <div class="total-row"><span>Total</span><strong id="total">Rp0</strong></div>
+            <p class="cart-note">Periksa kembali pesananmu sebelum mengirim. Ongkos kirim (jika ada) dapat dikonfirmasi langsung kepada penjual.</p>
+            <button class="btn checkout" onclick="checkoutWhatsApp()">Pesan via WhatsApp <span>→</span></button>
+            <button class="clear-cart" onclick="clearCart()">Kosongkan keranjang</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="info">
+      <div class="wrap info-layout">
+        <div class="info-copy"><div class="eyebrow">Tetap terhubung</div><h2>Informasi Toko Josjis Hihu</h2><p>Ingin bertanya tentang pesanan, pengiriman, atau pembayaran? Hubungi kami melalui kontak berikut.</p><a class="btn btn-primary" href="https://wa.me/6283857427613" target="_blank" rel="noopener">☏ Hubungi via WhatsApp</a></div>
+        <div class="contact-card">
+          <div class="contact-row"><span class="contact-icon">◎</span><a href="https://josjis.com" target="_blank" rel="noopener">josjis.com</a></div>
+          <div class="contact-row"><span class="contact-icon">☏</span><a href="https://wa.me/6283857427613" target="_blank" rel="noopener">+62 838 5742 7613</a></div>
+          <div class="contact-row"><span class="contact-icon">▣</span><a href="https://instagram.com/ginginnie.7" target="_blank" rel="noopener">@ginginnie.7</a></div>
+          <div class="contact-row"><span class="contact-icon">＠</span><span>@Nad</span></div>
+          <div class="contact-row"><span class="contact-icon">▧</span><span>Pembayaran: CASH / QRIS</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>© 2026 Josjis Hihu</span><span>Menu Camilan · josjis.com</span></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const products = {
+      pisang:{name:'Pisang coklat',price:2000,qty:1},
+      kupat:{name:'Kupat tahu',price:5000,qty:1},
+      keripik:{name:'Keripik singkong',price:3000,qty:1},
+      cipak:{name:'Cipak hihu',price:2000,qty:1}
+    };
+    const cart = {};
+    const rupiah = n => 'Rp' + n.toLocaleString('id-ID');
+    function changeQty(id,delta){products[id].qty=Math.max(1,Math.min(99,products[id].qty+delta));document.getElementById('qty-'+id).textContent=products[id].qty;}
+    function addToCart(id){cart[id]=(cart[id]||0)+products[id].qty;renderCart();toast(products[id].name+' ditambahkan ke keranjang');}
+    function removeFromCart(id){delete cart[id];renderCart();}
+    function clearCart(){Object.keys(cart).forEach(k=>delete cart[k]);renderCart();toast('Keranjang sudah dikosongkan');}
+    function renderCart(){
+      const entries=Object.entries(cart);const count=entries.reduce((s,[,q])=>s+q,0);const total=entries.reduce((s,[id,q])=>s+products[id].price*q,0);
+      document.getElementById('cart-count').textContent=count+' item';document.getElementById('nav-count').textContent=count;document.getElementById('total').textContent=rupiah(total);
+      const el=document.getElementById('cart-items');
+      if(!entries.length){el.innerHTML='<div class="empty">Keranjang masih kosong. Pilih camilan dari katalog, yuk!</div>';return;}
+      el.innerHTML=entries.map(([id,q])=>`<div class="cart-item"><div><strong>${products[id].name} × ${q}</strong><small>${rupiah(products[id].price)} / item</small></div><div style="text-align:right"><strong>${rupiah(products[id].price*q)}</strong><br><button class="remove" onclick="removeFromCart('${id}')">Hapus</button></div></div>`).join('');
+    }
+    function checkoutWhatsApp(){
+      const entries=Object.entries(cart);if(!entries.length){toast('Keranjang masih kosong. Tambahkan camilan dulu, ya!');return;}
+      const total=entries.reduce((s,[id,q])=>s+products[id].price*q,0);
+      let message='Halo Josjis Hihu! Saya ingin memesan:%0A%0A';
+      entries.forEach(([id,q])=>{message+=`• ${products[id].name} (${q} × ${rupiah(products[id].price)}) = ${rupiah(products[id].price*q)}%0A`;});
+      message+=`%0A*Total: ${rupiah(total)}*%0A%0ANama:%0ACatatan pesanan:`;
+      window.open('https://wa.me/6283857427613?text='+message,'_blank','noopener');
+    }
+    let toastTimer;function toast(message){const el=document.getElementById('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2300);}
+    renderCart();
+  </script>
+</body>
+</html>
